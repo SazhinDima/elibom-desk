@@ -1,7 +1,5 @@
 window.TopDepartmentListItemView = Backbone.View.extend({
 
-	tagName: "li",
-	
     events: {
         "click .top_department": "choosetopdepartment"
     },

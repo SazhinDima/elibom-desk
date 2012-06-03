@@ -3,7 +3,7 @@ window.DepartmentLocator = TopDepartmentLocator.extend({
     renderTopDepartments: function() {
     	view = this;
 		var topDepartmentCollection = new TopDepartmentCollection();
-		topDepartmentCollection.fetch({
+		topDepartmentCollection.pagedFetch({
 			success : function() {
 				var topDepartmentListView = new TopDepartmentListView({
 					model : topDepartmentCollection,
