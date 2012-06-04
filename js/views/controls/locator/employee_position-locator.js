@@ -3,11 +3,13 @@ window.EmployeePositionLocator = PositionLocator.extend({
     renderPositionsTo: function(renderTo) {
     	employeePositionLocatorView = this;
 		var positionCollection = new PositionCollection();
-		positionCollection.fetch({
+		positionCollection.filter = employeePositionLocatorView.filter;
+		positionCollection.pagedFetch({
 			success : function() {
 				var positionListView = new PositionListView({
 					model : positionCollection,
 					onreturn : function(id, desc) {
+						view.filter.get("folder_id").value = id;
 						employeePositionLocatorView.renderEmployeePositions();
 					}
 				})
@@ -19,7 +21,8 @@ window.EmployeePositionLocator = PositionLocator.extend({
     renderEmployeePositions: function() {
     	employeePositionLocatorView = this;
 		var employeePositionCollection = new EmployeePositionCollection();
-		employeePositionCollection.fetch({
+		employeePositionCollection.filter = employeePositionLocatorView.filter;
+		employeePositionCollection.pagedFetch({
 			success : function() {
 				var employeePositionListView = new EmployeePositionListView({
 					model : employeePositionCollection,

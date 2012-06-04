@@ -1,6 +1,4 @@
 window.PositionListItemView = Backbone.View.extend({
-
-	tagName: "li",
 	
     events: {
         "click .position": "chooseposition"

@@ -1,4 +1,4 @@
-window.DepartmentCollection = Backbone.Collection.extend({
+window.DepartmentCollection = PagedAndFilterCollection.extend({
 	model: DepartmentModel,
 	url: RootURL + "departments"
 });

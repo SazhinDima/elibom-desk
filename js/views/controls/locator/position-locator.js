@@ -33,11 +33,13 @@ window.PositionLocator = DepartmentLocator.extend({
     renderDepartmentsTo: function(renderTo) {
     	positionLocatorView = this;
 		var departmentCollection = new DepartmentCollection();
-		departmentCollection.fetch({
+		departmentCollection.filter = positionLocatorView.filter;
+		departmentCollection.pagedFetch({
 			success : function() {
 				var departmentListView = new DepartmentListView({
 					model : departmentCollection,
 					onreturn : function(id, desc) {
+						positionLocatorView.filter.get("folder_id").value = id;
 						positionLocatorView.renderDepartmentsAndPositions();
 					}
 				})

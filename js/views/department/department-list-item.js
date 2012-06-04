@@ -1,7 +1,5 @@
 window.DepartmentListItemView = Backbone.View.extend({
 
-	tagName: "li",
-	
     events: {
         "click .department": "choosedepartment"
     },

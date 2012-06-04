@@ -1,7 +1,5 @@
 window.EmployeePositionListItemView = Backbone.View.extend({
 
-	tagName: "li",
-	
     events: {
         "click .employeeposition": "chooseemployeeposition"
     },
