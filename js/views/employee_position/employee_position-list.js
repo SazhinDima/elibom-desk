@@ -1,9 +1,4 @@
 window.EmployeePositionListView = Backbone.View.extend({
-
-	events : {
-		"click #nextPage" : "nextPage",
-		"click #prevPage" : "prevPage"
-	},
 	
 	initialize : function() {
 		this.template = _.template(tpl
@@ -14,9 +9,11 @@ window.EmployeePositionListView = Backbone.View.extend({
 		employeePositionListView = this;
 		$(this.el).html(this.template());
 		
+		this.$('#pager').html(new PagerView({model: this.model, caller: this}).render().el);
+		
 		var list = this.$('#list');
 		_.each(this.model.models, function(employeeposition) {
-			list.append(new EmployeePositionListItemView({
+			list.append(new ListItemView({
 				model : employeeposition,
 				onreturn : function(id, desc) {
 					employeePositionListView.options.onreturn.call(this, id, desc);
@@ -24,32 +21,6 @@ window.EmployeePositionListView = Backbone.View.extend({
 			}).render().el);
 		}, this);
 		
-		if (this.model.hasNextPage) {
-			this.$('#nextPage').css("visibility", "visible");
-		}
-		if (this.model.hasPrevPage) {
-			this.$('#prevPage').css("visibility", "visible");
-		}
-		
 		return this;
-	},
-	
-	nextPage : function() {
-		var self = this;
-		this.model.nextPage({
-			success : function() {
-				self.render();
-			}
-		});
-	},
-
-	prevPage : function() {
-		var self = this;
-		this.model.prevPage({
-			success : function() {
-				self.render();
-			}
-		});
 	}
-	
 });

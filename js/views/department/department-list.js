@@ -1,10 +1,5 @@
 window.DepartmentListView = Backbone.View.extend({
 
-	events : {
-		"click #nextPage" : "nextPage",
-		"click #prevPage" : "prevPage"
-	},
-	
 	initialize : function() {
 		this.template = _.template(tpl
 				.get('department/department-list'));
@@ -13,9 +8,12 @@ window.DepartmentListView = Backbone.View.extend({
 	render : function(eventName) {
 		departmentListView = this;
 		$(this.el).html(this.template());
+		
+		this.$('#pager').html(new PagerView({model: this.model, caller: this}).render().el);
+		
 		var list = this.$('#list');
 		_.each(this.model.models, function(department) {
-			list.append(new DepartmentListItemView({
+			list.append(new ListItemView({
 				model : department,
 				onreturn : function(id, desc) {
 					departmentListView.options.onreturn.call(this, id, desc);
@@ -23,31 +21,6 @@ window.DepartmentListView = Backbone.View.extend({
 			}).render().el);
 		}, this);
 		
-		if (this.model.hasNextPage) {
-			this.$('#nextPage').css("visibility", "visible");
-		}
-		if (this.model.hasPrevPage) {
-			this.$('#prevPage').css("visibility", "visible");
-		}
-		
 		return this;
-	},
-	
-	nextPage : function() {
-		var self = this;
-		this.model.nextPage({
-			success : function() {
-				self.render();
-			}
-		});
-	},
-
-	prevPage : function() {
-		var self = this;
-		this.model.prevPage({
-			success : function() {
-				self.render();
-			}
-		});
 	}
 });

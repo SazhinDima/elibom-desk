@@ -11,6 +11,8 @@ Backbone.View.prototype.close = function () {
 function startApp() {
 	layers.initialize();
     tpl.loadTemplates([
+    'pager/pager',
+    'item/list-item',
     'controls/text-input', 'controls/label',
     'controls/context-lookup-enabled', 'controls/context-lookup-disabled',
     'controls/date-input-enabled', 'controls/date-input-disabled',
@@ -18,10 +20,10 @@ function startApp() {
 	'comment/comments', 'comment/comment-item',
 	'workspace/workspace', 'menu/menu',
 	'internal/internal-list', 'internal/internal-list-item','internal/internal', 'internal/internal-list-filter',
-	'top_department/top_department-list', 'top_department/top_department-list-item',
-	'department/department-list', 'department/department-list-item',
-	'position/position-list', 'position/position-list-item',
-	'employee_position/employee_position-list', 'employee_position/employee_position-list-item',
+	'top_department/top_department-list',
+	'department/department-list',
+	'position/position-list',
+	'employee_position/employee_position-list',
 	'department-and-position/department-and-position-list',
 	'ord/ord-list', 'ord/ord-list-item','ord/ord'
 	], function() {
