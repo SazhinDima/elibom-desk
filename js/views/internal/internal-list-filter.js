@@ -15,10 +15,18 @@ window.InternalListFilterView = Backbone.View.extend({
     render: function(eventName) {
         $(this.el).html(this.template());
         
-		var object_name = this.model.get("object_name");
-		this.$('#control_object_name').html(
-				new TextInput({model: this.model, attributes: object_name}).render().el);
+		var croc_reg_number = this.model.get("croc_reg_number");
+		this.$('#control_croc_reg_number').html(
+				new TextInput({model: this.model, attributes: croc_reg_number}).render().el);
 
+		var reg_date_from = this.model.get("reg_date_from");
+		this.$('#control_reg_date_from').html(
+				new DateInput({model: this.model, attributes: reg_date_from}).render().el);
+		
+		var reg_date_to = this.model.get("reg_date_to");
+		this.$('#control_reg_date_to').html(
+				new DateInput({model: this.model, attributes: reg_date_to}).render().el);
+		
 		return this;
     },
     

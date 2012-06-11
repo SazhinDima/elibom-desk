@@ -13,9 +13,17 @@ window.InternalView = Backbone.View.extend({
     render: function(eventName) {
 		$(this.el).html(this.template(this.model.toJSON()));
 		
-		var object_name = this.model.get("object_name");
-		this.$('#control_object_name').html(
-				new TextInput({model: this.model, attributes: object_name}).render().el);
+		var document_kind = this.model.get("document_kind");
+		this.$('#control_document_kind').html(
+				new ContextLookup({type: DocumentKindLocator, model: this.model, attributes: document_kind}).render().el);
+		
+		var state = this.model.get("state");
+		this.$('#control_state').html(
+				new TextInput({model: this.model, attributes: state}).render().el);
+		
+		var paper = this.model.get("paper");
+		this.$('#control_paper').html(
+				new CheckBox({model: this.model, attributes: paper}).render().el);
 		
 		var croc_doc_summary = this.model.get("croc_doc_summary");
 		this.$('#control_croc_doc_summary').html(
@@ -23,11 +31,7 @@ window.InternalView = Backbone.View.extend({
 		
 		var croc_performer_id = this.model.get("croc_performer_id");
 		this.$('#control_croc_performer_id').html(
-				new ContextLookup({model: this.model, attributes: croc_performer_id}).render().el);
-		
-		var croc_reg_number = this.model.get("croc_reg_number");
-		this.$('#control_croc_reg_number').html(
-				new DateInput({model: this.model, attributes: croc_reg_number}).render().el);
+				new ContextLookup({type: EmployeePositionLocator, model: this.model, attributes: croc_performer_id}).render().el);
 		
 		return this;
     },

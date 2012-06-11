@@ -6,11 +6,33 @@
 	</div>
 </div>
 
-<div class="container">
-	<form class="form-inline">
-		<div id="control_object_name"></div>
-		<br />
+<form class="form-horizontal">
+	<div class="control-group">
+		<label class="control-label">Рег. номер</label>
+		<div class="controls">
+			<div id="control_croc_reg_number"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span5">
+			<div class="control-group">
+				<label class="control-label">Рег. дата с</label>
+				<div class="controls">
+					<div id="control_reg_date_from"></div>
+				</div>
+			</div>
+		</div>
+		<div class="span5">
+			<div class="control-group">
+				<label class="control-label">по</label>
+				<div class="controls">
+					<div id="control_reg_date_to"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-actions">
 		<button id="filter" class="btn" type="button">Применить</button>
 		<button id="close" class="btn" type="button">Закрыть</button>
-	</form>
-</div>
+	</div>
+</form>

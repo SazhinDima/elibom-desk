@@ -6,7 +6,8 @@ window.ContextLookup = Backbone.View.extend({
     
     select: function(e) {
     	cl = this;
-    	layers.newLayer().html(new EmployeePositionLocator({
+    	layers.newLayer().html(new this.options.type({
+    		model: this.model,
 			onreturn : function(id, descr) {
 				cl.attributes.value = id;
 				cl.attributes.description = descr;

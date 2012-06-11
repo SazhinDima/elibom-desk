@@ -9,6 +9,7 @@ window.InternalRouter = Backbone.Router.extend({
 		var self = this;
 		layers.currentLayer().html(new WorkspaceView({selected: "internal"}).render().el);
 		self.internalList = new InternalCollection();
+		self.internalList.filter = new InternalFilter();
 		self.internalList.pagedFetch({success: function() {
 			self.internalListView = new InternalListView({model: self.internalList})
 			$('#content').html(self.internalListView.render().el);

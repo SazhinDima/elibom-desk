@@ -2,8 +2,9 @@ window.DateInput = Backbone.View.extend({
     
     render: function(eventName) {
     	var di = this;
-    	if (this.attributes.enabled) {
-    		$(this.el).html(_.template(tpl.get('controls/date-input-enabled'))(this.attributes));
+    	var value = di.attributes['value'].format('dd.mm.yyyy');
+    	if (this.attributes.enabled || (this.attributes.enabled === undefined)) {
+    		$(this.el).html(_.template(tpl.get('controls/date-input-enabled'))({value: value}));
     		this.$('#dateinput').scroller({
     	        preset: 'date',
     	        theme: 'android-ics light',
@@ -15,12 +16,15 @@ window.DateInput = Backbone.View.extend({
     	        cancelText: 'Отмена',
     	        setText: 'Выбрать',
     	        onSelect: function(valueText, inst) {
-    	        	di.attributes.value = valueText;
+    	        	var date = di.attributes['value'];
+    	        	date.setDate(inst.values[0]);
+    	        	date.setMonth(inst.values[1]);
+    	        	date.setYear(inst.values[2]);
     	        }
     	    });
     	    
     	} else {
-    		$(this.el).html(_.template(tpl.get('controls/date-input-disabled'))(this.attributes));
+    		$(this.el).html(_.template(tpl.get('controls/date-input-disabled'))({value: value}));
     	}
 		return this;
     }
