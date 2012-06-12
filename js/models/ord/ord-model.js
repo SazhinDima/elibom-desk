@@ -9,10 +9,5 @@ window.OrdModel = Backbone.Model.extend({
 	    "year":  "",
 	    "description":  "",
 	    "picture":  ""
-	},
-
-	initialize: function(){
-	    this.set({comments: new CommentCollection()});
 	}
-
 });

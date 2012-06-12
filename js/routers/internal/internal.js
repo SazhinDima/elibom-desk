@@ -24,7 +24,7 @@ window.InternalRouter = Backbone.Router.extend({
 			var internal = new InternalModel({id: id});
 		}
 		internal.fetch({success: function() {
-			layers.newLayer().html(new InternalView({model: internal, 
+			layers.newLayer().html(new InternalContainerView({model: internal, 
 				onreturn: function() {
 					if (self.internalListView) {
 						self.internalListView.render();

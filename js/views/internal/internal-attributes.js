@@ -1,13 +1,7 @@
-window.InternalView = Backbone.View.extend({
+window.InternalAttributesView = Backbone.View.extend({
 
     initialize: function() {
-        this.template = _.template(tpl.get('internal/internal'));
-    },
-    
-    events: {
-        "click #close": "close",
-        "click #checkout": "checkout",
-        "click #save": "save"
+        this.template = _.template(tpl.get('internal/internal-attributes'));
     },
     
     render: function(eventName) {
@@ -34,26 +28,6 @@ window.InternalView = Backbone.View.extend({
 				new ContextLookup({type: EmployeePositionLocator, model: this.model, attributes: croc_performer_id}).render().el);
 		
 		return this;
-    },
-
-    close: function(e) {
-    	Backbone.history.navigate("internal/" + this.model.id + "/leave");
-    	this.options.onreturn.call();
-    	layers.closeLayer();
-    },
-
-    checkout: function(e) {
-    	var self = this;
-    	this.model.fetch({data: $.param({checkout: true}), success: function() {
-    		self.render();
-        }});
-    },
-    
-    save: function(e) {
-    	this.model.save();
-    	Backbone.history.navigate("internal/" + this.model.id + "/leave");
-    	this.options.onreturn.call();
-    	layers.closeLayer();
     }
 
 });
